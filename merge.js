@@ -10,7 +10,7 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 const port = 3000
-app.use(morgan('tiny'))
+app.use(morgan())
 
 
 app.post('/merge', (req, res) => {
