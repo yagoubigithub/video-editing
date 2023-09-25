@@ -22,11 +22,12 @@ app.post('/merge', (req, res) => {
                 console.log(err);
             }
     
+            const cm2 = `ffmpeg --version`;
             const cmd = `ffmpeg -i video2.mp4 -i image.png \
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
     -pix_fmt yuv420p -c:a copy \
     output.mp4`;
-            exec(cmd, function (err, stdout, stderr) {
+            exec(cm2, function (err, stdout, stderr) {
     
     
                 if (err) {
@@ -34,7 +35,7 @@ app.post('/merge', (req, res) => {
                     res.json({err : err})
                     //throw err;
                 }
-    res.json({success : true})
+    res.json({success : stdout})
     
     
     
