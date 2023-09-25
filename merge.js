@@ -41,7 +41,7 @@ app.post('/merge', (req, res) => {
     
     
                 if (err) {
-                    console.log(err)
+                    res.json({error : err.message})
                    
                     throw err;
                 }
