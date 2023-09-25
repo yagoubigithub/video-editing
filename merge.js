@@ -15,7 +15,7 @@ app.use(morgan())
 
 app.post('/merge', (req, res) => {
 
-    return res.json({success : true})
+    
         const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
         fs.writeFile("image.png", base64Data, 'base64', function (err) {
             if (err) {
@@ -31,6 +31,7 @@ app.post('/merge', (req, res) => {
     
                 if (err) {
                     console.log(err)
+                    res.json({err : err})
                     //throw err;
                 }
     res.json({success : true})
