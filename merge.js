@@ -16,7 +16,7 @@ app.use(morgan())
 
 app.post('/merge', (req, res) => {
 
-    exec('ls', function (err, stdout, stderr) {
+    exec('rm-rf output.mp4', function (err, stdout, stderr) {
     
     
         if (err) {
@@ -24,13 +24,6 @@ app.post('/merge', (req, res) => {
            
             throw err;
         }
-        res.json({success : stdout})
-
-
-
-
-    })
-
         const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
         fs.writeFile("image.png", base64Data, 'base64', function (err) {
             if (err) {
@@ -39,6 +32,7 @@ app.post('/merge', (req, res) => {
 
          
             const cm2 = `ffmpeg -i "concat:video2.mp4|movie.mp4" -codec copy output.mp4`;
+            
             const cmd = `ffmpeg -i video2.mp4 -i image.png \
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
     -pix_fmt yuv420p -c:a copy \
@@ -57,6 +51,11 @@ app.post('/merge', (req, res) => {
     
             })
         });
+
+
+    })
+
+      
     
    
 
