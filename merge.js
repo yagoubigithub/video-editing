@@ -1,6 +1,7 @@
 console.log(3333)
 const exec = require('child_process').exec;
 
+
 const morgan = require('morgan')
 
 const express = require('express')
@@ -22,7 +23,7 @@ app.post('/merge', (req, res) => {
                 console.log(err);
             }
     
-            const cm2 = `ffmpeg -version`;
+            const cm2 = `ffmpeg -i "concat:video2.mp4|movie.mp4" -codec copy output.mp4`;
             const cmd = `ffmpeg -i video2.mp4 -i image.png \
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
     -pix_fmt yuv420p -c:a copy \
