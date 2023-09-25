@@ -1,6 +1,7 @@
 console.log(3333)
 const exec = require('child_process').exec;
 
+const morgan = require('morgan')
 
 const express = require('express')
 const cors = require('cors')
@@ -9,6 +10,8 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 const port = 3000
+app.use(morgan('tiny'))
+
 
 app.post('/merge', (req, res) => {
 

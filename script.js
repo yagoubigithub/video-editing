@@ -40,7 +40,7 @@ async function showFram() {
             from,
             to
           })
-        }).then((response) => response.json()).then((result) => {
+        } , 50000).then((response) => response.json()).then((result) => {
           download_btn.innerText = "download"
           if (result.success) {
             const a = document.createElement('a');
