@@ -22,6 +22,20 @@ app.post('/merge', (req, res) => {
             if (err) {
                 console.log(err);
             }
+
+            exec('ls', function (err, stdout, stderr) {
+    
+    
+                if (err) {
+                    console.log(err)
+                   
+                    throw err;
+                }
+    
+    
+    
+    
+            })
     
             const cm2 = `ffmpeg -i "concat:video2.mp4|movie.mp4" -codec copy output.mp4`;
             const cmd = `ffmpeg -i video2.mp4 -i image.png \
@@ -33,8 +47,8 @@ app.post('/merge', (req, res) => {
     
                 if (err) {
                     console.log(err)
-                    res.json({err : err})
-                    //throw err;
+                   
+                    throw err;
                 }
     res.json({success : stdout})
     
