@@ -35,7 +35,7 @@ app.post('/merge', (req, res) => {
          
             const cmd = `ffmpeg -i video2.mp4 -i image.png \
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
-    -pix_fmt yuv420p -c:a copy \
+     -c:a copy \
     output.mp4`;
             exec(cmd, function (err, stdout, stderr) {
     
