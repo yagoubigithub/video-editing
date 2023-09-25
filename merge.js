@@ -16,7 +16,7 @@ app.use(morgan())
 
 app.post('/merge', (req, res) => {
 
-    exec('rm-rf output.mp4', function (err, stdout, stderr) {
+    exec('rm -rf output.mp4', function (err, stdout, stderr) {
     
     
         if (err) {
