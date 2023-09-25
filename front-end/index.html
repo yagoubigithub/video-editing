@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+ <!--    <div id="container">
+      <div>
+      
+       <div>
+        <div id="video-container">
+            <blockquote id="text" contenteditable="true">
+                come and enjoy
+
+            </blockquote>
+
+        </div>
+        <input type="range" min="0" step="0.1" id="myRange">
+       </div>
+      </div>
+       <div>
+        <div id="tools-container">
+            <button onclick="prepareInsertTetx()">Add text</button>
+        </div>
+       </div>
+    </div>
+
+    <button id="download_btn">download</button>
+ -->
+
+    <div class="container">
+       
+            <div class="side-bar">
+
+                <button id="play-btn">
+                    <img src="./img/play.png"  alt="">
+                </button>
+            </div>
+            <div class="content">
+                <div class="top-bar">
+                    <button id="download_btn">download</button>
+                </div>
+
+                <div class="content-container">
+                    <div class="video-container">
+
+                       <div>
+                        <div id="video-container">
+                            <blockquote id="text" contenteditable="true">
+                                come and enjoy
+                
+                            </blockquote>
+                
+                        </div>
+                        <input type="range" min="0" step="0.1" id="myRange">
+                        <div id="timing">
+                            <div id="timing-left"  class="left"></div>
+                            <div id="time"></div>
+                            <div id="timing-right" class="right">
+
+                            </div>
+
+                        </div>
+                       </div>
+
+                       <div class="tool-bar">
+                       <div class="sizing">
+                        <button id="add-btn">
+                            <img src="./img/add.png" alt="add">
+                        </button>
+                        <input type="number" min="11" value="55"  id="font-size-input">
+                        <button id="remove-btn">
+                            <img src="./img/remove.png" alt="remove.png">
+                        </button>
+                       </div>
+
+                       </div>
+                    </div>
+                   
+                   
+                </div>
+              
+            </div>
+      
+
+    </div>
+
+       
+    <script src="//unpkg.com/canvas-txt"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
