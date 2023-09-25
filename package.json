@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "server": "node merge.js",
-    "start" : "live-server  --ignore=**.mp4,**.png ."
+    "start": "live-server  --ignore=**.mp4,**.png ."
   },
   "keywords": [],
   "author": "",
@@ -17,8 +17,10 @@
     "fluent-ffmpeg": "^2.1.2",
     "video-stitch": "^1.7.1"
   },
-
   "engines": {
     "node": "16"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
