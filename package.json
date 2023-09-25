@@ -16,5 +16,9 @@
     "ffmpeg-static": "^5.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "video-stitch": "^1.7.1"
+  },
+
+  "engines": {
+    "node": ">=16 <18"
   }
 }
