@@ -26,7 +26,7 @@ async function showFram() {
       const dataurl = theCanvas.toDataURL()
       download_btn.innerText = "downloading ..."
 
-      fetch("http://localhost:3000/merge",
+      fetch("https://video-editing-test.onrender.com/merge",
         {
           method: 'POST',
           headers: {
@@ -46,7 +46,7 @@ async function showFram() {
             const a = document.createElement('a');
             document.body.appendChild(a);
             a.download = 'output.mp4';
-            a.href = "http://localhost:3000/download";
+            a.href = "https://video-editing-test.onrender.com/download";
             a.click();
           }
         })
