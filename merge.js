@@ -37,7 +37,7 @@ app.post('/merge', (req, res) => {
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
     -pix_fmt yuv420p -c:a copy \
     output.mp4`;
-            exec(cm2, function (err, stdout, stderr) {
+            exec(cmd, function (err, stdout, stderr) {
     
     
                 if (err) {
@@ -45,7 +45,7 @@ app.post('/merge', (req, res) => {
                    
                     throw err;
                 }
-    res.json({success : stdout})
+    res.json({success : true})
     
     
     
