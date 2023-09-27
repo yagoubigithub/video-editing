@@ -72,6 +72,7 @@ async function showFram() {
     fired++
     if (fired < 4) {
       console.log("fired")
+      document.getElementById("splash-screen").style.display = "none"
       scaleW = (document.body.getBoundingClientRect().width - 400) / video.videoWidth;
       scaleH = (document.body.getBoundingClientRect().height - 200) / video.videoHeight;
       [w, h] = [document.body.getBoundingClientRect().width - 400, document.body.getBoundingClientRect().height - 200];

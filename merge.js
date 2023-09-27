@@ -11,21 +11,15 @@ const fs = require('fs')
 const app = express()
 app.use(cors())
 app.use(express.json({limit: '50mb'}));
-const port = 3000
+const port = process.env.PORT || 3000;
 app.use(morgan())
 app.use(express.static('front-end'))
 
 app.post('/merge', (req, res) => {
 
   
-    exec('rm -rf output.mp4', function (err, stdout, stderr) {
-    
-        console.log('post naaa')
-        if (err) {
-            console.log(err)
-           
-            throw err;
-        }
+    fs.unlink('./output.mp4', (err) => {
+        if (err) console.log(err);
         const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
         fs.writeFile("image.png", base64Data, 'base64', function (err) {
             if (err) {

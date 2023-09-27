@@ -1,0 +1,11 @@
+3333
+Example app listening on port \\.\pipe\068180f9-1351-470f-b4e7-90171739abc1
+- - - [Wed, 27 Sep 2023 19:28:16 GMT] "GET / HTTP/1.1" 200 2909 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:16 GMT] "GET /style.css HTTP/1.1" 200 3747 "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:17 GMT] "GET /img/play.png HTTP/1.1" 200 21677 "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:17 GMT] "GET /img/add.png HTTP/1.1" 200 156 "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:17 GMT] "GET /img/remove.png HTTP/1.1" 200 137 "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:17 GMT] "GET /script.js HTTP/1.1" 200 9632 "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:26 GMT] "GET /favicon.ico HTTP/1.1" 404 150 "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:40 GMT] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+- - - [Wed, 27 Sep 2023 19:28:40 GMT] "GET /style.css HTTP/1.1" 304 - "http://172.86.123.32:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"

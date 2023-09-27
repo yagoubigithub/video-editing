@@ -1,0 +1,3 @@
+3333
+Example app listening on port \\.\pipe\f84df091-8e80-4c5c-b140-37e3d51a4c37
+- - - [Wed, 27 Sep 2023 11:24:18 GMT] "GET /ui/authentication HTTP/1.1" 404 156 "-" "Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A520F Build/R16NW)"

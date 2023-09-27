@@ -1,0 +1,5 @@
+3333
+Example app listening on port \\.\pipe\2cfab81d-1c9d-4bb3-a02a-a21b9161ed42
+- - - [Wed, 27 Sep 2023 07:20:14 GMT] "GET / HTTP/1.1" 200 2909 "-" "-"
+- - - [Wed, 27 Sep 2023 07:20:14 GMT] "GET / HTTP/1.1" 200 2909 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
+- - - [Wed, 27 Sep 2023 07:20:14 GMT] "GET /favicon.ico HTTP/1.1" 404 150 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"WINDOWS-DTX-8GB-11236-stderr-1695769520360.txt","computername":"WINDOWS-DTX-8GB","pid":11236,"type":"stderr","created":1695769520360},{"file":"WINDOWS-DTX-8GB-11236-stdout-1695769520360.txt","computername":"WINDOWS-DTX-8GB","pid":11236,"type":"stdout","created":1695769520360},{"file":"WINDOWS-DTX-8GB-11268-stderr-1695791694405.txt","computername":"WINDOWS-DTX-8GB","pid":11268,"type":"stderr","created":1695791694405},{"file":"WINDOWS-DTX-8GB-11268-stdout-1695791694405.txt","computername":"WINDOWS-DTX-8GB","pid":11268,"type":"stdout","created":1695791694405},{"file":"WINDOWS-DTX-8GB-11272-stderr-1695765160335.txt","computername":"WINDOWS-DTX-8GB","pid":11272,"type":"stderr","created":1695765160335},{"file":"WINDOWS-DTX-8GB-11272-stdout-1695765160335.txt","computername":"WINDOWS-DTX-8GB","pid":11272,"type":"stdout","created":1695765160335},{"file":"WINDOWS-DTX-8GB-11764-stderr-1695842896313.txt","computername":"WINDOWS-DTX-8GB","pid":11764,"type":"stderr","created":1695842896313},{"file":"WINDOWS-DTX-8GB-11764-stdout-1695842896313.txt","computername":"WINDOWS-DTX-8GB","pid":11764,"type":"stdout","created":1695842896313},{"file":"WINDOWS-DTX-8GB-12988-stderr-1695766588327.txt","computername":"WINDOWS-DTX-8GB","pid":12988,"type":"stderr","created":1695766588327},{"file":"WINDOWS-DTX-8GB-12988-stdout-1695766588327.txt","computername":"WINDOWS-DTX-8GB","pid":12988,"type":"stdout","created":1695766588327},{"file":"WINDOWS-DTX-8GB-13296-stderr-1695826182065.txt","computername":"WINDOWS-DTX-8GB","pid":13296,"type":"stderr","created":1695826182065},{"file":"WINDOWS-DTX-8GB-13296-stdout-1695826182050.txt","computername":"WINDOWS-DTX-8GB","pid":13296,"type":"stdout","created":1695826182050},{"file":"WINDOWS-DTX-8GB-2908-stderr-1695799213783.txt","computername":"WINDOWS-DTX-8GB","pid":2908,"type":"stderr","created":1695799213783},{"file":"WINDOWS-DTX-8GB-2908-stdout-1695799213783.txt","computername":"WINDOWS-DTX-8GB","pid":2908,"type":"stdout","created":1695799213783},{"file":"WINDOWS-DTX-8GB-2936-stderr-1695813858025.txt","computername":"WINDOWS-DTX-8GB","pid":2936,"type":"stderr","created":1695813858025},{"file":"WINDOWS-DTX-8GB-2936-stdout-1695813858025.txt","computername":"WINDOWS-DTX-8GB","pid":2936,"type":"stdout","created":1695813858025},{"file":"WINDOWS-DTX-8GB-5832-stderr-1695744442518.txt","computername":"WINDOWS-DTX-8GB","pid":5832,"type":"stderr","created":1695744442518},{"file":"WINDOWS-DTX-8GB-5832-stdout-1695744442503.txt","computername":"WINDOWS-DTX-8GB","pid":5832,"type":"stdout","created":1695744442503},{"file":"WINDOWS-DTX-8GB-8284-stderr-1695727179454.txt","computername":"WINDOWS-DTX-8GB","pid":8284,"type":"stderr","created":1695727179454},{"file":"WINDOWS-DTX-8GB-8284-stdout-1695727179454.txt","computername":"WINDOWS-DTX-8GB","pid":8284,"type":"stdout","created":1695727179454},{"file":"WINDOWS-DTX-8GB-8364-stderr-1695840570524.txt","computername":"WINDOWS-DTX-8GB","pid":8364,"type":"stderr","created":1695840570524},{"file":"WINDOWS-DTX-8GB-8364-stdout-1695840570524.txt","computername":"WINDOWS-DTX-8GB","pid":8364,"type":"stdout","created":1695840570524}];
+        var lastUpdated = 1695842896485;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>
