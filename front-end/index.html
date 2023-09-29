@@ -9,29 +9,7 @@
 </head>
 
 <body>
- <!--    <div id="container">
-      <div>
-      
-       <div>
-        <div id="video-container">
-            <blockquote id="text" contenteditable="true">
-                come and enjoy
 
-            </blockquote>
-
-        </div>
-        <input type="range" min="0" step="0.1" id="myRange">
-       </div>
-      </div>
-       <div>
-        <div id="tools-container">
-            <button onclick="prepareInsertTetx()">Add text</button>
-        </div>
-       </div>
-    </div>
-
-    <button id="download_btn">download</button>
- -->
 
 
  <div id="splash-screen">
@@ -74,6 +52,8 @@
                        </div>
 
                        <div class="tool-bar">
+
+
                        <div class="sizing">
                         <button id="add-btn">
                             <img src="./img/add.png" alt="add">
@@ -83,6 +63,18 @@
                             <img src="./img/remove.png" alt="remove.png">
                         </button>
                        </div>
+
+                       <ul id="font-list">
+
+                       </ul>
+
+
+                       <div class="color-container">
+                        <label for="style1">Color</label>
+                        <br>
+                        <input type="color" value="#ffffff" id="color-input" />
+                       
+                      </div>
 
                        </div>
                     </div>
@@ -97,6 +89,7 @@
 
        
     <script src="//unpkg.com/canvas-txt"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="./script.js"></script>
 </body>
 

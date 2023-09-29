@@ -6,6 +6,9 @@ let one_second = 0;
 let duration
 let from = 0,
   to = 3
+  let fontFamily = 'Arial';
+
+  let color = "#ffffff"
 const videoContainer = document.getElementById('video-container')
 const download_btn = document.getElementById('download_btn')
 const theCanvas = document.createElement("canvas")
@@ -59,7 +62,7 @@ async function showFram() {
 
 
   const myRange = document.getElementById("myRange")
-  let frominput = false;
+ 
 
 
 
@@ -73,9 +76,9 @@ async function showFram() {
     if (fired < 4) {
       console.log("fired")
       document.getElementById("splash-screen").style.display = "none"
-      scaleW = (document.body.getBoundingClientRect().width - 400) / video.videoWidth;
+      scaleW = (document.body.getBoundingClientRect().width - 600) / video.videoWidth;
       scaleH = (document.body.getBoundingClientRect().height - 200) / video.videoHeight;
-      [w, h] = [document.body.getBoundingClientRect().width - 400, document.body.getBoundingClientRect().height - 200];
+      [w, h] = [document.body.getBoundingClientRect().width - 600, document.body.getBoundingClientRect().height - 200];
 
 
       canvas.width = w;
@@ -335,10 +338,12 @@ text_div.addEventListener("input", (ev) => {
 
 
 function print() {
+  text_div.style.fontFamily = fontFamily;
+  text_div.style.color = color;
 
-  theContext.fillStyle = '#ffffff' //white color text
+  theContext.fillStyle = color //white color text
   theContext.clearRect(0, 0, theCanvas.width, theCanvas.height)
-  canvasTxt.drawText(theContext, text_div.innerText, { x: text_div.getBoundingClientRect().left, y: text_div.getBoundingClientRect().top, width: (text_div.offsetWidth + 10) / scaleW, height: (text_div.offsetHeight + 10) / scaleH, fontSize: font_size / scaleW, font: "Calibri", align: "center" })
+  canvasTxt.drawText(theContext, text_div.innerText, { x: text_div.getBoundingClientRect().left, y: text_div.getBoundingClientRect().top, width: (text_div.offsetWidth + 10) / scaleW, height: (text_div.offsetHeight + 10) / scaleH, fontSize: font_size / scaleW, font: fontFamily, align: "center" })
 }
 
 
@@ -347,9 +352,40 @@ function print() {
 
 
 
+const fontlist = document.getElementById("font-list")
+
+const fonts = ['Droid Sans', 'Croissant One' , 'Fuggles' , 'Bebas Neue' , 'Pacifico' , 'Great Vibes'  , 'Yellowtail' , 'Philosopher' , 'Passion One' , 'Kaushan Script']
+
+WebFont.load({
+  google: {
+    families: fonts
+  }
+});
+
+for (let i = 0; i < fonts.length; i++) {
+  const font = fonts[i];
+  const li = document.createElement("li")
+
+  const h3 = document.createElement("h3")
+  
+  h3.innerText = font,
+  h3.style.fontFamily  = font;
+  li.append(h3)
+  fontlist.append(li)
+  li.addEventListener("click" , ()=>{
+
+    fontFamily = font;
+    print()
+  })
+}
 
 
+const colorInput  = document.getElementById("color-input")
 
-
+colorInput.addEventListener("input" , (ev)=>{
+  console.log(ev.target.value)
+  color = ev.target.value
+  print()
+})
 
 
