@@ -18,38 +18,40 @@ app.use(express.static('front-end'))
 app.post('/merge', (req, res) => {
 
   
-    fs.unlink('./output.mp4', (err) => {
-        if (err) console.log(err);
-        const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
-        fs.writeFile("image.png", base64Data, 'base64', function (err) {
-            if (err) {
-                console.log(err);
-            }
+    // fs.unlink('./output.mp4', (err) => {
+    //     if (err) console.log(err);
+    //     const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
+    //     fs.writeFile("image.png", base64Data, 'base64', function (err) {
+    //         if (err) {
+    //             console.log(err);
+    //         }
 
          
-            const cmd = `ffmpeg -i video2.mp4 -i image.png \
-    -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
-     -c:a copy \
-    output.mp4`;
-            exec(cmd, function (err, stdout, stderr) {
+    //         const cmd = `ffmpeg -i video2.mp4 -i image.png \
+    // -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
+    //  -c:a copy \
+    // output.mp4`;
+    //         exec(cmd, function (err, stdout, stderr) {
     
     
-                if (err) {
-                    res.json({error : err.message})
+    //             if (err) {
+    //                 res.json({error : err.message})
                    
-                    throw err;
-                }
+    //                 throw err;
+    //             }
+    // res.json({success : true})
+    
+    
+    
+    //         })
+    //     });
+
+
+    // })
+
+
+
     res.json({success : true})
-    
-    
-    
-            })
-        });
-
-
-    })
-
-      
     
    
 
