@@ -66,7 +66,7 @@ app.get('/download', function(req, res){
 
   
   app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname ,'front-end' ,'index.html'));
+    res.sendFile(path.join(__dirname ,'front-end' ,'index.html?port='+port));
   });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

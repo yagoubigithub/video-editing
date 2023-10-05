@@ -48,7 +48,13 @@ async function showFram() {
       const dataurl = theCanvas.toDataURL()
       download_btn.innerText = "downloading ..."
 
-      fetch("http://localhost:3000/merge",
+      const url_string  = window.location.href
+
+      const url = new URL(url_string);
+      console.log(url_string)
+const  port = url.searchParams.get("port");
+
+      fetch(`http://localhost:${10000}/merge`,
         {
           method: 'POST',
           headers: {
