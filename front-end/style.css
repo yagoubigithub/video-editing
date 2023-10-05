@@ -163,7 +163,7 @@ display: flex;
 .tool-bar  #font-list li {
 
     width: 200px;
-    height: 90px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,7 +172,7 @@ display: flex;
 }
 .tool-bar  #font-list li h3 {
 
-    font-size: 35px;
+    font-size: 25px;
     color: rgba(0,0,0,0.5);
     text-align: center;
 }

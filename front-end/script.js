@@ -1,3 +1,4 @@
+
 let c = 0
 let insertText = false
 const canvasTxt = window.canvasTxt
@@ -13,7 +14,25 @@ const videoContainer = document.getElementById('video-container')
 const download_btn = document.getElementById('download_btn')
 const theCanvas = document.createElement("canvas")
 const theContext = theCanvas.getContext("2d")
+function post(url, data) {
+  return new Promise((res, rej) => {
+      let stringified = "";
+      for (const [key, value] of Object.entries(data))
+          stringified += `${stringified != '' ? '&' : ''}${key}=${value}`
 
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+          if (xhr.readyState == 4)
+              if (xhr.status == 200)
+                  res(xhr.responseText)
+              else
+                  rej({ code: xhr.status, text: xhr.responseText })
+      }
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(stringified);
+  })
+}
 async function showFram() {
   let videoUrl = "./video2.mp4"
   let videoBlob = await fetch(videoUrl).then((r) => r.blob());
@@ -29,7 +48,7 @@ async function showFram() {
       const dataurl = theCanvas.toDataURL()
       download_btn.innerText = "downloading ..."
 
-      fetch("./merge",
+      fetch("http://localhost:3000/merge",
         {
           method: 'POST',
           headers: {

@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 cap = cv2.VideoCapture()
-cap.open("rtsp://admin:yourpassword@192.168.1.53:555/Streaming/channels/2/")
+cap.open("rtsp://admin:twins12345@192.168.1.51:554/Streaming/channels/101/")
 
 while(True):
      # Capture frame-by-frame
