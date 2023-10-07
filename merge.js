@@ -20,6 +20,12 @@ const port = process.env.PORT || 3000;
 //app.use(morgan());
 app.use(express.static("front-end"));
 
+const output = (label) => (data) => {
+  let str = data.toString().split(/(\r\n|\n)+/).filter(i => i.trim().length);
+  str.forEach(row => {
+      console.log(`[${label}]`, row);
+  })
+};
 app.post("/merge", (req, res) => {
   fs.unlink("./output.mp4", (err) => {
     if (err) console.log(err);
@@ -63,7 +69,7 @@ app.post("/merge", (req, res) => {
          res.json({ success: true });
        }); 
        ffmpeg.stderr.on('data', (data) => {
-        console.log(JSON.stringify (data))
+        console.log(output (data))
         // if(typeof data  === 'string'){
         //   data.split(/\r?\n|\r|\n/g).map(line=>{
         //    console.log(line)
