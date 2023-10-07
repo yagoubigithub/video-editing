@@ -51,9 +51,6 @@ app.post("/merge", (req, res) => {
 
         const ffmpeg = spawn("ffmpeg" , ['-i' , 'video2.mp4' , '-i' ,
         'image.png' , '-filter_complex' , `[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
-       
-       
-       
        ])
        ffmpeg.stdout.on('data', (data) => {
    
@@ -80,7 +77,7 @@ app.post("/merge", (req, res) => {
          res.json({ success: true });
        }); 
        ffmpeg.stderr.on('data', (code) => {
-         console.log(` ${code}`);
+         console.log(`errrrrrrrrrrrrrrrrrrrrrrr-r-r-r-r-r-r-r-r-r-r-r-r-r-r-r-r- ${code}`);
          
        }); 
       })
