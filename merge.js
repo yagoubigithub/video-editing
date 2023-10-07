@@ -29,6 +29,7 @@ const port = process.env.PORT || 3000;
 //app.use(morgan());
 app.use(express.static("front-end"));
 
+let mySoket = null;
 
 app.post("/merge", (req, res) => {
   fs.unlink("./output.mp4", (err) => {
@@ -88,7 +89,9 @@ app.post("/merge", (req, res) => {
                 if(!isNaN(result.split("=")[1])){
 
                   const progress = parseFloat(result.split("=")[1])  / frameNumbers * 100
-                  socket.emit('progress', progress);
+                 if(mySoket){
+                  mySoket.emit('progress', progress);
+                 }
 
                 }
                
@@ -138,4 +141,5 @@ const io = socketio(server)
 
 io.on('connection', (socket) => {
   console.log('New connection')
+  mySoket = socket
 })
