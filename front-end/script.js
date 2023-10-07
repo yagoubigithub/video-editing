@@ -54,7 +54,7 @@ async function showFram() {
       console.log(url_string)
 const  port = url.searchParams.get("port");
 
-      fetch(`https://video-editing-test.onrender.com/merge`,
+      fetch(`https://video-editing-1234-abcd.site/merge`,
         {
           method: 'POST',
           headers: {
