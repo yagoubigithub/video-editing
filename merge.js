@@ -3,6 +3,7 @@ const exec = require("child_process").exec;
 const spawn = require("child_process").spawn;
 
 
+const socketio = require('socket.io');
 
 
 
@@ -15,25 +16,11 @@ const cors = require("cors");
 const fs = require("fs");
 const app = express();
 
-const http = require('http');
-const server = http.createServer(app);
-const socketIo = require('socket.io')
-
-const io = socketIo(server,{ 
-  cors: {
-    origin: 'https://video-editing-1234-abcd.site'
-  }
-}) //in case server and client run on different urls
 
 
 
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
+
 
 
 app.use(cors());
@@ -145,6 +132,14 @@ app.get("/download", function (req, res) {
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "front-end", "index.html?port=" + port));
 });
-app.listen(port, () => {
+const server =  app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
+const io = socketio(server)
+
+
+io.on('connection', (socket) => {
+  console.log('New connection')
+})
