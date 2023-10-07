@@ -285,7 +285,7 @@ height: 100%;
   #progress {
     width: 100vw;
     height: 5px;
-    background-color: red;
+    background-color: #28b3d0;
   }
   
   @keyframes spin {
