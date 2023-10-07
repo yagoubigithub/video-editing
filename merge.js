@@ -78,8 +78,12 @@ app.post("/merge", (req, res) => {
             if (line.indexOf("frame") > -1) {
               
               if(line.indexOf("fps")  > -1){
-               console.log( line.split("fps")[0])
-              console.log( "======================")
+               const result  = line.split("fps")[0]
+               if (result.indexOf("frame") > -1) {
+
+                console.log(" ======  "+result.split("=")[1])
+
+               }
  
               }
  
