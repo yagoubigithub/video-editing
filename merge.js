@@ -89,9 +89,7 @@ app.post("/merge", (req, res) => {
                 if(!isNaN(result.split("=")[1])){
 
                   const progress = parseFloat(result.split("=")[1])  / frameNumbers * 100
-                 if(mySoket){
-                  mySoket.emit('progress', progress);
-                 }
+                  io.sockets.emit('progress', progress);
 
                 }
                
