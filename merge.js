@@ -19,11 +19,11 @@ app.post('/merge', (req, res) => {
 
   
     fs.unlink('./output.mp4', (err) => {
-        if (err) res.json({success : err});
+        if (err) console.log(err);
         const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
         fs.writeFile("image.png", base64Data, 'base64', function (err) {
             if (err) {
-                res.json({success : err});
+                console.log(err);
             }
 
          
@@ -31,6 +31,7 @@ app.post('/merge', (req, res) => {
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
      -c:a copy \
     output.mp4`;
+    console.log(cmd)
             exec(cmd, function (err, stdout, stderr) {
     
     
