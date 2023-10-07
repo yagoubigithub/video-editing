@@ -34,39 +34,50 @@ app.post("/merge", (req, res) => {
 
       
 
-      const cmd = `ffmpeg -i video2.mp4 -i image.png  \
-    -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
-     -c:a copy \
-    output.mp4 -progress pipe:1`;
+      const cmd = `ffprobe -v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0 video2.mp4`;
    
 
-    const ffmpeg = spawn("ffmpeg" , ['-i' , 'video2.mp4' , '-i' ,
-     'image.png' , '-filter_complex' , `[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
-    
-    
-    
-    ])
-    ffmpeg.stdout.on('data', (data) => {
+      exec(cmd , (err , stdout , stderr)=>{
 
-     if(typeof data  === 'string'){
-      data.split(/\r?\n|\r|\n/g).map(line=>{
-        if (line.indexOf("frame")) {
-          console.log(line)
-          
+
+
+           if (err) {
+           res.json({ error: err.message });
+
+           throw err;
+         }
+
+         console.log(stdout , stderr)
+
+        const ffmpeg = spawn("ffmpeg" , ['-i' , 'video2.mp4' , '-i' ,
+        'image.png' , '-filter_complex' , `[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
+       
+       
+       
+       ])
+       ffmpeg.stdout.on('data', (data) => {
+   
+        if(typeof data  === 'string'){
+         data.split(/\r?\n|\r|\n/g).map(line=>{
+           if (line.indexOf("frame")) {
+             console.log(line)
+             
+           }
+         })
         }
+         //console.log(`stdout: ${data}`);
+       });
+   
+       ffmpeg.on('close', (code) => {
+         console.log(`child process exited with code ${code}`);
+         res.json({ success: true });
+       }); 
+       ffmpeg.stderr.on('data', (code) => {
+         console.log(` ${code}`);
+         
+       }); 
       })
-     }
-      //console.log(`stdout: ${data}`);
-    });
-
-    ffmpeg.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-      res.json({ success: true });
-    }); 
-    ffmpeg.stderr.on('data', (code) => {
-      console.log(` ${code}`);
-      
-    }); 
+   
       
       // exec(cmd, function (err, stdout, stderr) {
       //   if (err) {
