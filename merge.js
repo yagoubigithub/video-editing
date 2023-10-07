@@ -47,7 +47,7 @@ app.post("/merge", (req, res) => {
            throw err;
          }
 
-         console.log(stdout , stderr)
+         console.log(stdout )
 
         const ffmpeg = spawn("ffmpeg" , ['-i' , 'video2.mp4' , '-i' ,
         'image.png' , '-filter_complex' , `[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
@@ -60,7 +60,10 @@ app.post("/merge", (req, res) => {
         if(typeof data  === 'string'){
          data.split(/\r?\n|\r|\n/g).map(line=>{
            if (line.indexOf("frame")) {
-             console.log(line)
+             if(line.indexOf("fps")){
+             console.log( line.split("fps")[0].split('=')[1])
+
+             }
              
            }
          })
