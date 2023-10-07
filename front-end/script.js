@@ -17,7 +17,7 @@ const theContext = theCanvas.getContext("2d")
 const socket = io();
 
 socket.on('progress', (data) => {
-  document.getElementById("progress").style.width = `calc(100vw / ${parseFloat(data)})`
+  document.getElementById("progress").style.width = ` ${parseFloat(data)}vw`
         console.log(`New message from ${socket.id}: ${data}`);
     })
 
