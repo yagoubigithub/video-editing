@@ -53,7 +53,7 @@ app.post("/merge", (req, res) => {
            throw err;
          }
 
-       //  console.log(stdout )
+       const frameNumbers = parseInt(stdout)
 
         const ffmpeg = spawn("ffmpeg" , ['-i' , 'video2.mp4' , '-i' ,
         'image.png' , '-filter_complex' , `[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
@@ -81,7 +81,12 @@ app.post("/merge", (req, res) => {
                const result  = line.split("fps")[0]
                if (result.indexOf("frame") > -1) {
 
-                console.log(" ======  "+result.split("=")[1])
+                if(!isNaN(result.split("=")[1])){
+
+                  const progress = parseFloat(result.split("=")[1])  / frameNumbers * 100
+                  console.log(" ======  "+progress)
+                }
+               
 
                }
  
