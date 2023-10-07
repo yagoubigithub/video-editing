@@ -76,9 +76,9 @@ app.post("/merge", (req, res) => {
           _data.split(/\r?\n|\r|\n/g).map(line=>{
           
             if (line.indexOf("frame") > -1) {
-              console.log(line)
-              if(line.indexOf("fps")){
-               console.log( line.split("fps")[0].split('=')[1])
+              
+              if(line.indexOf("fps")  > -1){
+               console.log( line.split("fps")[0])
               console.log( "======================")
  
               }
