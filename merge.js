@@ -38,10 +38,10 @@ app.post("/merge", (req, res) => {
     -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'" \
      -c:a copy \
     output.mp4 -progress pipe:1`;
-    console.log(cmd)
+   
 
     const ffmpeg = spawn("ffmpeg" , ['-i' , 'video2.mp4' , '-i' ,
-     'image.png' , '-filter_complex' , `"[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'"` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
+     'image.png' , '-filter_complex' , `[0:v][1:v] overlay=0:0:enable='between(t,${req.body.from},${req.body.to})'` , '-c:a' , 'copy' , 'output.mp4', '-progress' , 'pipe:1'
     
     
     
