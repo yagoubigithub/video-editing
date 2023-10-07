@@ -29,12 +29,7 @@ const port = process.env.PORT || 3000;
 //app.use(morgan());
 app.use(express.static("front-end"));
 
-const output = (label) => (data) => {
-  let str = data.toString().split(/(\r\n|\n)+/).filter(i => i.trim().length);
-  str.forEach(row => {
-      console.log(`[${label}]`, row);
-  })
-};
+
 app.post("/merge", (req, res) => {
   fs.unlink("./output.mp4", (err) => {
     if (err) console.log(err);
@@ -93,7 +88,8 @@ app.post("/merge", (req, res) => {
                 if(!isNaN(result.split("=")[1])){
 
                   const progress = parseFloat(result.split("=")[1])  / frameNumbers * 100
-                  console.log(" ======  "+progress)
+                  socket.emit('progress', progress);
+
                 }
                
 
