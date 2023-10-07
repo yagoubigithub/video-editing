@@ -48,12 +48,14 @@ app.post("/merge", (req, res) => {
     ])
     ffmpeg.stdout.on('data', (data) => {
 
+     if(typeof data  === 'string'){
       data.split(/\r?\n|\r|\n/g).map(line=>{
         if (line.indexOf("frame")) {
           console.log(line)
           
         }
       })
+     }
       //console.log(`stdout: ${data}`);
     });
 
