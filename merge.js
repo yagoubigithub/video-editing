@@ -19,11 +19,8 @@ const http = require('http');
 const server = http.createServer(app);
 const socketIo = require('socket.io')
 
-const io = socketIo(server,{ 
-  cors: {
-    origin: 'http://localhost:3000'
-  }
-}) //in case server and client run on different urls
+const io = socketIo(server
+) //in case server and client run on different urls
 
 
 

@@ -14,7 +14,7 @@ const videoContainer = document.getElementById('video-container')
 const download_btn = document.getElementById('download_btn')
 const theCanvas = document.createElement("canvas")
 const theContext = theCanvas.getContext("2d")
-const socket = io('http://localhost:3000');
+const socket = io();
 
 
 async function showFram() {
