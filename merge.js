@@ -69,7 +69,7 @@ app.post("/merge", (req, res) => {
          res.json({ success: true });
        }); 
        ffmpeg.stderr.on('data', (data) => {
-        console.log(output (data))
+        console.log(data.data)
         // if(typeof data  === 'string'){
         //   data.split(/\r?\n|\r|\n/g).map(line=>{
         //    console.log(line)
