@@ -19,11 +19,11 @@ app.post('/merge', (req, res) => {
 
   
     fs.unlink('./output.mp4', (err) => {
-        if (err) console.log(err);
+        if (err) res.json({success : err});
         const base64Data = req.body.imgBase64.replace(/^data:image\/png;base64,/, "");
         fs.writeFile("image.png", base64Data, 'base64', function (err) {
             if (err) {
-                console.log(err);
+                res.json({success : err});
             }
 
          
