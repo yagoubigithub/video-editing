@@ -31,28 +31,47 @@ body{
     background-color: transparent;
 }
 #download_btn{
-    padding: 12px;
-    font-size: 24px;
+    padding: 6px;
+    font-size: 18px;
+    background-color: #28b3d0;
+    color: white;
+    border: 0;
+    outline: none;
+    position: absolute;
+    right: 20px;
+    top : 5px;
 
+
+
+}
+.play-btn-container{
+    position: absolute;
+    bottom: 0;
+    height: 150px;
+    background-color: #f3f6f9;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #play-btn{
     background: transparent;
     outline: none;
     border: none;
     cursor: pointer;
-    position: absolute;
-    bottom: 0;
+    
+   
 }
 #play-btn img{ 
     max-width: 150px;
 }
 .video-container {
-    width: calc(100vw - 400px);
+    width: calc(100vw - 200px);
 display: flex;
 }
 
 #video-container {
-    width: calc(100vw - 400px);
+    width: calc(100vw - 200px);
     height:  calc(100vh - 200px);
     position: relative;
    box-shadow: 0px 0px  4px gray;
@@ -147,7 +166,8 @@ display: flex;
    
     background-color: white;
     height: calc(100vh - 50px);
-    min-width: 400px;
+    min-width: 250px;
+    width: 250px;
     box-shadow: 0px 0px  4px gray;
 }
 .tool-bar  #font-list {
@@ -162,8 +182,8 @@ display: flex;
 
 .tool-bar  #font-list li {
 
-    width: 200px;
-    height: 70px;
+    width:125px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,7 +192,7 @@ display: flex;
 }
 .tool-bar  #font-list li h3 {
 
-    font-size: 25px;
+    font-size: 20px;
     color: rgba(0,0,0,0.5);
     text-align: center;
 }

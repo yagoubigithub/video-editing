@@ -101,9 +101,9 @@ const  port = url.searchParams.get("port");
     if (fired < 4) {
       console.log("fired")
       document.getElementById("splash-screen").style.display = "none"
-      scaleW = (document.body.getBoundingClientRect().width - 600) / video.videoWidth;
+      scaleW = (document.body.getBoundingClientRect().width - 450) / video.videoWidth;
       scaleH = (document.body.getBoundingClientRect().height - 200) / video.videoHeight;
-      [w, h] = [document.body.getBoundingClientRect().width - 600, document.body.getBoundingClientRect().height - 200];
+      [w, h] = [document.body.getBoundingClientRect().width - 450, document.body.getBoundingClientRect().height - 200];
 
 
       canvas.width = w;
