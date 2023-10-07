@@ -14,8 +14,12 @@ const videoContainer = document.getElementById('video-container')
 const download_btn = document.getElementById('download_btn')
 const theCanvas = document.createElement("canvas")
 const theContext = theCanvas.getContext("2d")
-const socket = io('https://video-editing-1234-abcd.site');
+const socket = io();
 
+socket.on('progress', (data) => {
+  document.getElementById("progress").style.width = `calc(100vw / ${parseFloat(data)})`
+        console.log(`New message from ${socket.id}: ${data}`);
+    })
 
 async function showFram() {
   let videoUrl = "./video2.mp4"

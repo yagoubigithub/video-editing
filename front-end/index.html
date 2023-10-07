@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+<div id="progress"></div>
 
 
  <div id="splash-screen">
@@ -97,11 +97,7 @@
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
 
-const socket = io();
 
-socket.on('progress', (data) => {
-        console.log(`New message from ${socket.id}: ${data}`);
-    })
     </script>
     <script type="module" src="./script.js"></script>
 </body>
