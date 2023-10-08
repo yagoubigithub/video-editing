@@ -1,4 +1,7 @@
 
+//let baseUrl = 'https://video-editing-1234-abcd.site'
+
+ let baseUrl =  'http://localhost:3000'
 let c = 0
 let insertText = false
 const canvasTxt = window.canvasTxt
@@ -10,6 +13,7 @@ let from = 0,
   let fontFamily = 'Arial';
 
   let color = "#ffffff"
+  const dragContainer = document.getElementById("drag-container")
 const videoContainer = document.getElementById('video-container')
 const download_btn = document.getElementById('download_btn')
 const theCanvas = document.createElement("canvas")
@@ -42,7 +46,7 @@ async function showFram() {
       console.log(url_string)
 const  port = url.searchParams.get("port");
 
-      fetch(`https://video-editing-1234-abcd.site/merge`,
+      fetch(`${baseUrl}/merge`,
         {
           method: 'POST',
           headers: {
@@ -93,7 +97,11 @@ const  port = url.searchParams.get("port");
       scaleH = (document.body.getBoundingClientRect().height - 200) / video.videoHeight;
       [w, h] = [document.body.getBoundingClientRect().width - 450, document.body.getBoundingClientRect().height - 200];
 
+      
 
+
+      
+dragElement(dragContainer , w , h);
       canvas.width = w;
       canvas.height = h;
 
@@ -322,6 +330,10 @@ const remove_btn = document.getElementById("remove-btn");
 const font_size_input = document.getElementById("font-size-input")
 let font_size = 55;
 const text_div = document.getElementById("text")
+text_div.addEventListener("click" , ()=>{
+  //placeCaretAtEnd( text_div );
+})
+
 
 font_size_input.addEventListener("input", (ev) => {
   const value = parseInt(ev.target.value)

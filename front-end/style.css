@@ -146,21 +146,37 @@ display: flex;
     cursor: pointer;
 }
 #text{
-    border: 3px dashed white;
+    
     padding: 25px;
     font-size: 55px;
     color: white;
     display: inline-block;
-    position: absolute;
-    top: 25px;
-    margin: auto;
+    
+   
     text-align: center;
-    left: 0;
-    right: 0;
+   
+    position: relative;
     box-sizing: border-box;
     width: fit-content;
     z-index: 999;
     outline: none;
+   border: 1px solid red;
+   cursor: text;
+  
+
+}
+#drag-container {
+    position: absolute;
+    top: 25px;
+    padding: 5px;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    border: 3px dashed white;
+    width: fit-content;
+    z-index: 998;
+    cursor: move;
+    
 }
 .tool-bar {
    
