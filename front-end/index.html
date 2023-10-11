@@ -59,13 +59,15 @@
 
 
                        <div class="sizing">
-                        <button id="add-btn">
-                            <img src="./img/add.png" alt="add">
-                        </button>
-                        <input type="number" min="11" value="35"  id="font-size-input">
                         <button id="remove-btn">
                             <img src="./img/remove.png" alt="remove.png">
                         </button>
+                        <input type="number" min="11" value="35"  id="font-size-input">
+
+                        <button id="add-btn">
+                            <img src="./img/add.png" alt="add">
+                        </button>
+                       
                        </div>
 
                        <ul id="font-list">
@@ -74,9 +76,23 @@
 
 
                        <div class="color-container">
-                        <label for="style1">Color</label>
-                        <br>
-                        <input type="color" value="#ffffff" id="color-input" />
+                        <label for="color-input">
+                            <img src="./img/text-color.png" alt="">
+                        </label>
+                       
+                        <input   data-jscolor="{value:'rgba(255,255,255,1)', previewElement:'#pr1'}" id="color-input" />
+                       
+                      </div>
+
+                      <div class="color-container">
+                        <label  for="background-color-input" >
+                            
+                            <img src="./img/fill-color.png" alt="">
+                          
+                            <input id="background-color-input"  data-jscolor="{value:'rgba(255,255,255,0)', previewElement:'#pr1'}">
+                        </label>
+                        
+                        
                        
                       </div>
 
@@ -91,13 +107,17 @@
 
     </div>
 
-       
+     
+    <div id="trash"></div>
   
     <script src="//unpkg.com/canvas-txt"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="./html2canvas.min.js"></script>
+    <script src="./jscolor.min.js"></script>
   <script src="./utils.js"></script>
+  
     <script type="module" src="./script.js"></script>
 </body>
 

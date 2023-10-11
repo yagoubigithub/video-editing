@@ -5,7 +5,7 @@
 let c = 0
 let insertText = false
 const canvasTxt = window.canvasTxt
-let w, h, scaleH, scaleW;
+let w, h, scaleH, scaleW , precentageH, precentageW;
 let one_second = 0;
 let duration
 let from = 0,
@@ -13,6 +13,7 @@ let from = 0,
   let fontFamily = 'Arial';
 
   let color = "#ffffff"
+  let backgroundColor = "#ffffff00"
   const dragContainer = document.getElementById("drag-container")
 const videoContainer = document.getElementById('video-container')
 const download_btn = document.getElementById('download_btn')
@@ -93,9 +94,16 @@ const  port = url.searchParams.get("port");
     if (fired < 4) {
       console.log("fired")
       document.getElementById("splash-screen").style.display = "none"
-      scaleW = (document.body.getBoundingClientRect().width - 450) / video.videoWidth;
-      scaleH = (document.body.getBoundingClientRect().height - 200) / video.videoHeight;
-      [w, h] = [document.body.getBoundingClientRect().width - 450, document.body.getBoundingClientRect().height - 200];
+    
+      w = document.body.getBoundingClientRect().width - 450
+      h = document.body.getBoundingClientRect().height - 200
+      scaleW = video.videoWidth /  w  ;
+      scaleH = video.videoHeight /  h ;
+
+      precentageW = (video.videoWidth / w) * 100
+      precentageH = (video.videoHeight  / h) * 100
+
+    
 
       
 
@@ -138,7 +146,7 @@ const  port = url.searchParams.get("port");
    
     video.currentTime = parseInt(event.target.value)
     context.drawImage(video, 0, 0, w, h);
-    frominput = true
+   
   })
 
 
@@ -342,20 +350,22 @@ font_size_input.addEventListener("input", (ev) => {
   font_size = value
   font_size_input.value = value
   text_div.style.fontSize = value + "px"
+  print()
 })
 
 add_btn.addEventListener("click", (ev) => {
   font_size++;
   font_size_input.value = font_size
   text_div.style.fontSize = font_size + "px"
+  print()
 
 })
 
 remove_btn.addEventListener("click", (ev) => {
   if (font_size === 11) return
-  font_size--;
   font_size_input.value = font_size
   text_div.style.fontSize = font_size + "px"
+  print()
 
 })
 
@@ -367,11 +377,41 @@ text_div.addEventListener("input", (ev) => {
 function print() {
   text_div.style.fontFamily = fontFamily;
   text_div.style.color = color;
+  text_div.style.backgroundColor = backgroundColor
 
   
-  theContext.fillStyle = color //white color text
-  theContext.clearRect(0, 0, theCanvas.width, theCanvas.height)
-  canvasTxt.drawText(theContext, text_div.innerText, { x: dragContainer.offsetLeft / scaleW, y: dragContainer.offsetTop / scaleH, width: (dragContainer.offsetWidth + 10) / scaleW, height: (dragContainer.offsetHeight + 10) / scaleH, fontSize: font_size / scaleW, font: fontFamily, align: "center" })
+  const clone = text_div.cloneNode(true);
+ 
+
+  
+  console.log("precte" , precentageW , precentageH)
+
+  document.getElementById("trash").innerHTML = ""
+  document.getElementById("trash").appendChild(clone)
+  html2canvas(clone).then(mynewCanvas => {
+   
+    let x1 =( dragContainer.offsetLeft) * (precentageW / 100)
+    let y1 = (dragContainer.offsetTop)  * (precentageH / 100)
+  
+    console.log(mynewCanvas.width, mynewCanvas.height)
+    theContext.clearRect(0, 0, theCanvas.width, theCanvas.height)
+    theContext.drawImage(mynewCanvas,0,0 , mynewCanvas.width , mynewCanvas.height ,x1, y1, 
+      ( dragContainer.offsetWidth -5 ) * (precentageW / 100),
+      ( dragContainer.offsetHeight  -5  ) * (precentageH / 100)
+      
+      );
+    //document.getElementById("trash").removeChild(clone)
+
+
+}); 
+ 
+
+
+
+  // theContext.fillStyle = backgroundColor //background color text
+  // theContext.fillRect(x1 , y1, width1, height1);
+  // theContext.fillStyle = color // color text
+  // canvasTxt.drawText(theContext, text_div.innerText, { x:x1, y:y1 , width:width1 + 10 , height:height1 +10, fontSize: font_size / scaleW, font: fontFamily, align: "center" })
 }
 
 
@@ -413,6 +453,14 @@ const colorInput  = document.getElementById("color-input")
 colorInput.addEventListener("input" , (ev)=>{
   console.log(ev.target.value)
   color = ev.target.value
+  print()
+})
+
+const backgroundInput  = document.getElementById("background-color-input")
+
+backgroundInput.addEventListener("input" , (ev)=>{
+  console.log(ev.target.value)
+  backgroundColor = ev.target.value
   print()
 })
 
