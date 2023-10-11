@@ -147,10 +147,12 @@ display: flex;
 }
 #text{
     
-    padding: 25px;
-    font-size: 55px;
+    padding: 10px;
+    font-size: 35px;
     color: white;
     display: inline-block;
+    word-break: keep-all;
+    white-space: nowrap;
     
    
     text-align: center;
@@ -160,17 +162,15 @@ display: flex;
     width: fit-content;
     z-index: 999;
     outline: none;
-   border: 1px solid red;
    cursor: text;
   
 
 }
 #drag-container {
     position: absolute;
-    top: 25px;
+   
     padding: 5px;
-    left: 0;
-    right: 0;
+   
     background-color: transparent;
     border: 3px dashed white;
     width: fit-content;

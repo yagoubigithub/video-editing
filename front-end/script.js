@@ -99,9 +99,11 @@ const  port = url.searchParams.get("port");
 
       
 
+      dragContainer.style.left = ((w / 2) - (dragContainer.offsetWidth / 2) ) + "px"
+      dragContainer.style.top = ((h / 2) - (dragContainer.offsetHeight ) ) + "px"
 
       
-dragElement(dragContainer , w , h);
+      dragElement(dragContainer , w , h , print);
       canvas.width = w;
       canvas.height = h;
 
@@ -328,7 +330,7 @@ timing_left.addEventListener('mousedown', function (e) {
 const add_btn = document.getElementById("add-btn");
 const remove_btn = document.getElementById("remove-btn");
 const font_size_input = document.getElementById("font-size-input")
-let font_size = 55;
+let font_size = 35;
 const text_div = document.getElementById("text")
 text_div.addEventListener("click" , ()=>{
   //placeCaretAtEnd( text_div );
@@ -366,9 +368,10 @@ function print() {
   text_div.style.fontFamily = fontFamily;
   text_div.style.color = color;
 
+  
   theContext.fillStyle = color //white color text
   theContext.clearRect(0, 0, theCanvas.width, theCanvas.height)
-  canvasTxt.drawText(theContext, text_div.innerText, { x: text_div.getBoundingClientRect().left, y: text_div.getBoundingClientRect().top, width: (text_div.offsetWidth + 10) / scaleW, height: (text_div.offsetHeight + 10) / scaleH, fontSize: font_size / scaleW, font: fontFamily, align: "center" })
+  canvasTxt.drawText(theContext, text_div.innerText, { x: dragContainer.offsetLeft / scaleW, y: dragContainer.offsetTop / scaleH, width: (dragContainer.offsetWidth + 10) / scaleW, height: (dragContainer.offsetHeight + 10) / scaleH, fontSize: font_size / scaleW, font: fontFamily, align: "center" })
 }
 
 

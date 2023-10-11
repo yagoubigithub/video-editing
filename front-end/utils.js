@@ -1,4 +1,4 @@
-function dragElement(elmnt , w , h) {
+function dragElement(elmnt , w , h  ,print) {
     
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "header")) {
@@ -31,8 +31,8 @@ function dragElement(elmnt , w , h) {
       pos1 = pos3 - e.clientX;
       pos2 = pos4 - e.clientY;
 
-     console.log(elmnt.offsetTop - pos2 >  h - elmnt.offsetHeight)
-      if(elmnt.offsetTop - pos2 < 0 || elmnt.offsetLeft - pos1 < 0  || elmnt.offsetTop - pos2 >  h - elmnt.offsetHeight || elmnt.offsetLeft - pos1  > w) return
+ 
+      if(elmnt.offsetTop - pos2 < 0 || elmnt.offsetLeft - pos1 < 0  || elmnt.offsetTop - pos2 >  h - elmnt.offsetHeight || elmnt.offsetLeft - pos1  > w - elmnt.offsetWidth) return false
       
        pos3 = e.clientX;
        pos4 = e.clientY;
@@ -45,6 +45,7 @@ function dragElement(elmnt , w , h) {
   
     function closeDragElement() {
       // stop moving when mouse button is released:
+      print()
       document.onmouseup = null;
       document.onmousemove = null;
     }
