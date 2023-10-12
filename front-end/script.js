@@ -465,3 +465,26 @@ backgroundInput.addEventListener("input" , (ev)=>{
 })
 
 
+
+//video-input
+
+const videoInput  = document.getElementById("video-input")
+
+videoInput.addEventListener("change" , (ev)=>{
+  const selectedFile = videoInput.files[0];
+  console.log(selectedFile);
+  const formData  = new FormData();
+
+  formData.append("file", selectedFile);
+  const req = new XMLHttpRequest(); 
+
+  req.upload.addEventListener("progress", (e)=>{
+    console.log(` ${parseFloat( (((e.loaded/e.total)*100)))}vw`)
+    //progress
+    document.getElementById("progress").style.width = ` ${parseFloat( (((e.loaded/e.total)*100)))}vw`
+  }); 
+  req.open("POST", "/upload"); 
+
+  req.send(formData)
+
+})
