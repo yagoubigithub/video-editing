@@ -4,8 +4,8 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "server": "node merge.js",
-    "start": "live-server  --ignore=**.mp4,**.png ."
+    "server": "live-server  --ignore=**.mp4,**.png .",
+    "start": "node merge.js"
   },
   "keywords": [],
   "author": "",

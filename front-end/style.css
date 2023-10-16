@@ -11,7 +11,7 @@
 #trash {
     position: fixed;
     z-index: -999;
-    top: 0;
+    top: -900px;
     left: 0;
 
 }
@@ -23,7 +23,8 @@ body{
 }
 
 .side-bar {
-    background-color: #505052;
+    background-color: #50505244;
+   
     height: 100vh;
     width: 200px;
     position: relative;

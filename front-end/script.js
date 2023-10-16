@@ -44,7 +44,7 @@ async function showFram() {
       const url_string  = window.location.href
 
       const url = new URL(url_string);
-      console.log(url_string)
+
 const  port = url.searchParams.get("port");
 
       fetch(`${baseUrl}/merge`,
@@ -141,7 +141,7 @@ const  port = url.searchParams.get("port");
   });
 
   myRange.addEventListener("input", (event) => {
-    console.log(event.target.value)
+   
     video.currentTime = 1
    
     video.currentTime = parseInt(event.target.value)
@@ -174,7 +174,7 @@ const  port = url.searchParams.get("port");
   }, 0);
 
   video.addEventListener('timeupdate', function() {
-   console.log( video.currentTime   )
+  
    myRange.value = video.currentTime 
   });
  })
@@ -363,6 +363,7 @@ add_btn.addEventListener("click", (ev) => {
 
 remove_btn.addEventListener("click", (ev) => {
   if (font_size === 11) return
+  font_size--;
   font_size_input.value = font_size
   text_div.style.fontSize = font_size + "px"
   print()
@@ -384,11 +385,11 @@ function print() {
  
 
   
-  console.log("precte" , precentageW , precentageH)
+
 
   document.getElementById("trash").innerHTML = ""
   document.getElementById("trash").appendChild(clone)
-  html2canvas(clone).then(mynewCanvas => {
+  html2canvas(clone , {backgroundColor:null}).then(mynewCanvas => {
    
     let x1 =( dragContainer.offsetLeft) * (precentageW / 100)
     let y1 = (dragContainer.offsetTop)  * (precentageH / 100)
@@ -451,7 +452,7 @@ for (let i = 0; i < fonts.length; i++) {
 const colorInput  = document.getElementById("color-input")
 
 colorInput.addEventListener("input" , (ev)=>{
-  console.log(ev.target.value)
+
   color = ev.target.value
   print()
 })
@@ -459,7 +460,7 @@ colorInput.addEventListener("input" , (ev)=>{
 const backgroundInput  = document.getElementById("background-color-input")
 
 backgroundInput.addEventListener("input" , (ev)=>{
-  console.log(ev.target.value)
+ 
   backgroundColor = ev.target.value
   print()
 })
@@ -472,17 +473,19 @@ const videoInput  = document.getElementById("video-input")
 
 videoInput.addEventListener("change" , (ev)=>{
   const selectedFile = videoInput.files[0];
-  console.log(selectedFile);
+ 
   const formData  = new FormData();
 
   formData.append("file", selectedFile);
   const req = new XMLHttpRequest(); 
 
   req.upload.addEventListener("progress", (e)=>{
-    console.log(` ${parseFloat( (((e.loaded/e.total)*100)))}vw`)
+   
     //progress
     document.getElementById("progress").style.width = ` ${parseFloat( (((e.loaded/e.total)*100)))}vw`
   }); 
+
+ 
   req.open("POST", "/upload"); 
 
   req.send(formData)
