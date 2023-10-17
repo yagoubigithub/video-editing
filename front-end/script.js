@@ -26,6 +26,11 @@ socket.on('progress', (data) => {
         console.log(`New message from ${socket.id}: ${data}`);
     })
 
+socket.on('videos', (data) => {
+  
+            console.log(`videos ${socket.id}:` , data);
+        })
+
 async function showFram() {
   let videoUrl = "./video2.mp4"
   let videoBlob = await fetch(videoUrl).then((r) => r.blob());

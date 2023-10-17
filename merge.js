@@ -1,14 +1,24 @@
-console.log(3333);
+
 const exec = require("child_process").exec;
 const spawn = require("child_process").spawn;
 
 const socketio = require("socket.io");
+
+const dotenv = require("dotenv");
 
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 const formidable = require("formidable");
+const mongoose = require("mongoose");
+const { v4: uuidv4 } = require('uuid');
+
+const {addVideo, getAllVideos}  = require("./db")
+
+dotenv.config()
+
+
 
 const app = express();
 
@@ -18,6 +28,16 @@ app.use(express.urlencoded({limit: '50mb'}));
 const port = process.env.PORT || 3000;
 //app.use(morgan());
 app.use(express.static("front-end"));
+
+mongoose.connect(process.env.MONGO_URL,{
+
+  useNewUrlParser : true
+}).then(()=>{
+  console.log("database connected")
+}).catch(Err=>{
+  console.log(Err)
+})
+
 
 let mySoket = null;
 
@@ -112,7 +132,9 @@ app.get("/", function (req, res) {
 });
 
 app.post("/upload", (req, res) => {
-  const form = formidable({});
+  const form = formidable({
+    uploadDir : "uploads"
+  });
   form.parse(req, (err, fields, files) => {
     if (err) {
       //next(err);
@@ -121,22 +143,39 @@ app.post("/upload", (req, res) => {
 
     res.writeHead(200, { "content-type": "video/mp4" });
 
-    const filepath = path.join(__dirname , "uploads",files.file.originalFilename)
-    // We write the copy of the video using the path of the temp video file
-    let writer = fs.createWriteStream();
-    let reader = fs.createReadStream(files.file.filepath).pipe(writer);
-
-    writer.on("finish", () => {
-      // Once the video uploaded, we delete the temp file
-      fs.unlink(files.file.filepath, err => {
-          if (err) throw err
-      })
-    
+   
+    let oldPath = files.file.filepath;
+    let filename = uuidv4()  + ".mp4"
+    let newPath = path.join(__dirname , "uploads" , filename )
 
    
+    let rawData = fs.readFileSync(oldPath)
+ 
+    fs.writeFile(newPath, rawData, function (err) {
+        if (err) console.log(err)
+        fs.unlink(oldPath, err => {
+          if (err) throw err
 
-  })
+          const data = {
+        originalFilename : files.file.originalFilename,
+        filename
 
+      }
+            addVideo(res , data).then(video=>{
+              getAllVideos().then(videos=>{
+                
+                io.sockets.emit("videos", videos);
+              })
+            }).catch(err=>{
+              console.log(err)
+            })
+           
+      
+      })
+    })
+
+
+  
  
    
   });

@@ -2,3 +2,4 @@ node_modules
 ffprobe.exe
 ffmpeg.exe
 uploads
+.env
