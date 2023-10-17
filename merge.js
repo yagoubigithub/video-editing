@@ -41,7 +41,7 @@ mongoose.connect(process.env.MONGO_URL,{
 
 let mySoket = null;
 
-app.post("/merge", (req, res) => {
+app.post("/merge"  , express.bodyParser({limit: '1000mb'}), (req, res) => {
   fs.unlink("./output.mp4", (err) => {
     if (err) console.log(err);
     const base64Data = req.body.imgBase64.replace(
@@ -131,7 +131,7 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "front-end", "index.html?port=" + port));
 });
 
-app.post("/upload", (req, res) => {
+app.post("/upload" , express.bodyParser({limit: '1000mb'}), (req, res) => {
   const form = formidable({
     uploadDir : "uploads"
   });
